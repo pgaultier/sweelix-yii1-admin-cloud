@@ -28,7 +28,8 @@ use sweelix\yii1\web\helpers\Html;
 		'template' => "\n<thead>\n{header}\n{summary}\n</thead>\n<tbody>\n{items}\n</tbody>\n<tfoot>\n{footer}\n</tfoot>\n",
 		'viewData' => array(
 				'tagId' => $tag->tagId,
-				'title' => '',
+				'route' => 'tag/listNode',
+				'title' => 'Page {pageNum} / {pageCount}',
 		),
 	));
 ?>

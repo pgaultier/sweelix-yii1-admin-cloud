@@ -35,7 +35,7 @@ if($data->hasTag($tagId) === true) {
 		'class' => $class,
 		'data-target' => '#'.$widget->getId(),
 		'data-mode' => 'replace',
-		'data-url-update' => Html::normalizeUrl(array('updateContentTag', 'contentId' => $data->contentId, 'tagId' => $tagId))
+		'data-url-update' => Html::normalizeUrl(array('updateContentTag', 'contentId' => $data->contentId, 'tagId' => $tagId, 'page' => $widget->dataProvider->pagination->currentPage))
 )); ?>
 
 	<td class="main-id">

@@ -21,7 +21,7 @@ $class = $data->nodeStatus;
 		'data-target' => '#'.$widget->getId(),
 		'data-node-id' => $data->nodeId,
 		'data-mode' => 'replace',
-		'data-url-move' => Html::normalizeUrl(array('moveNode', 'nodeId'=>$data->nodeId, 'nodeId'=>$data->nodeId))
+		'data-url-move' => Html::normalizeUrl(array('moveNode', 'nodeId'=>$data->nodeId, 'nodeId'=>$data->nodeId, 'page' => $widget->dataProvider->pagination->currentPage))
 	)); ?>
 
 	<td class="main-id">
@@ -34,7 +34,7 @@ $class = $data->nodeStatus;
 				echo Html::link(
 					$data->nodeId,
 					array('/sweeft/structure/node/', 'nodeId' => $data->nodeId ),
-					array('title' => Yii::t('CloudModule.sweelix', 'ID'))
+					array('title' => Yii::t('cloud', 'ID'))
 				);
 			} else {
 				echo Html::tag('span', array('id', $data->nodeId), $data->nodeId);
@@ -44,21 +44,21 @@ $class = $data->nodeStatus;
 	<td class="status">
 		<?php
 			if($data->nodeStatus === 'offline') {
-				echo Html::tag('span', array('class' => 'icon-circle-block', 'title' => Yii::t('CloudModule.sweelix', $data->nodeStatus)), $data->nodeStatus);
+				echo Html::tag('span', array('class' => 'icon-circle-block', 'title' => Yii::t('cloud', $data->nodeStatus)), $data->nodeStatus);
 			} else {
 				if (Yii::app()->user->checkAccess('structure') === true) {
-					echo Html::link(Yii::t('CloudModule.sweelix', 'offline'),
+					echo Html::link(Yii::t('cloud', 'offline'),
 							array('changeNodeStatus', 'groupId' => $groupId, 'nodeId' => $data->nodeId, 'nodeId' => $data->nodeId, 'mode' => 'offline'),
 							array(
-								'class' => 'icon-circle-block light inverse ajaxRefresh', 'title' => Yii::t('CloudModule.sweelix', 'offline'),
+								'class' => 'icon-circle-block light inverse ajaxRefresh', 'title' => Yii::t('cloud', 'offline'),
 								'data-target' => '#'.$widget->getId(),
 								'data-mode' => 'replace'
 							)
 					);
 				} else {
-					echo Html::label(Yii::t('CloudModule.sweelix', 'offline'), null,
+					echo Html::label(Yii::t('cloud', 'offline'), null,
 							array(
-								'class' => 'icon-circle-block light inverse', 'title' => Yii::t('CloudModule.sweelix', 'offline'),
+								'class' => 'icon-circle-block light inverse', 'title' => Yii::t('cloud', 'offline'),
 							)
 					);
 				}
@@ -66,21 +66,21 @@ $class = $data->nodeStatus;
 		?>
 		<?php
 			if($data->nodeStatus === 'draft') {
-				echo Html::tag('span', array('class' => 'icon-file-lines', 'title' => Yii::t('CloudModule.sweelix', $data->nodeStatus)), $data->nodeStatus);
+				echo Html::tag('span', array('class' => 'icon-file-lines', 'title' => Yii::t('cloud', $data->nodeStatus)), $data->nodeStatus);
 			} else {
 				if (Yii::app()->user->checkAccess('structure') === true) {
-					echo Html::link(Yii::t('CloudModule.sweelix', 'draft'),
+					echo Html::link(Yii::t('cloud', 'draft'),
 							array('changeNodeStatus', 'groupId' => $groupId, 'nodeId' => $data->nodeId, 'nodeId' => $data->nodeId, 'mode' => 'draft'),
 							array(
-								'class' => 'icon-file-lines light inverse ajaxRefresh', 'title' => Yii::t('CloudModule.sweelix', 'draft'),
+								'class' => 'icon-file-lines light inverse ajaxRefresh', 'title' => Yii::t('cloud', 'draft'),
 								'data-target' => '#'.$widget->getId(),
 								'data-mode' => 'replace'
 							)
 					);
 				} else {
-					echo Html::label(Yii::t('CloudModule.sweelix', 'draft'), null,
+					echo Html::label(Yii::t('cloud', 'draft'), null,
 							array(
-								'class' => 'icon-file-lines light inverse', 'title' => Yii::t('CloudModule.sweelix', 'draft'),
+								'class' => 'icon-file-lines light inverse', 'title' => Yii::t('cloud', 'draft'),
 							)
 					);
 				}
@@ -88,20 +88,20 @@ $class = $data->nodeStatus;
 		?>
 		<?php
 			if($data->nodeStatus === 'online') {
-				echo Html::tag('span', array('class' => 'icon-circle-check', 'title' => Yii::t('CloudModule.sweelix', $data->nodeStatus)), $data->nodeStatus);
+				echo Html::tag('span', array('class' => 'icon-circle-check', 'title' => Yii::t('cloud', $data->nodeStatus)), $data->nodeStatus);
 			} else {
 				if (Yii::app()->user->checkAccess('structure') === true) {
-					echo Html::link(Yii::t('CloudModule.sweelix', 'online'),
+					echo Html::link(Yii::t('cloud', 'online'),
 							array('changeNodeStatus', 'groupId' => $groupId, 'nodeId' => $data->nodeId, 'nodeId' => $data->nodeId, 'mode' => 'online'),
 							array(
-								'class' => 'icon-circle-check light inverse ajaxRefresh', 'title' => Yii::t('CloudModule.sweelix', 'online'),
+								'class' => 'icon-circle-check light inverse ajaxRefresh', 'title' => Yii::t('cloud', 'online'),
 								'data-target' => '#'.$widget->getId(),
 								'data-mode' => 'replace'
 							)
 					);
 				} else {
-					echo Html::label(Yii::t('CloudModule.sweelix', 'online'), null,
-							array('class' => 'icon-circle-check light inverse', 'title' => Yii::t('CloudModule.sweelix', 'online'),
+					echo Html::label(Yii::t('cloud', 'online'), null,
+							array('class' => 'icon-circle-check light inverse', 'title' => Yii::t('cloud', 'online'),
 							)
 					);
 				}

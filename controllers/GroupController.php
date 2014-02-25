@@ -397,7 +397,7 @@ class GroupController extends Controller {
 	 * @return void
 	 * @since  1.2.0
 	 */
-	public function actionListNode() {
+	public function actionListNode($page = 0) {
 		try {
 			\Yii::trace(__METHOD__.'()', 'sweelix.yii1.admin.cloud.controllers');
 			$contentCriteriaBuilder = new CriteriaBuilder('node');
@@ -407,12 +407,18 @@ class GroupController extends Controller {
 
 			if(\Yii::app()->request->isAjaxRequest === true) {
 				$this->renderPartial('_listNode', array(
-					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(array('pagination' => false)),
+					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(['pagination' => [
+						'pageSize' => $this->module->pageSize,
+						'currentPage' => $page,
+					]]),
 					'group'=>$this->currentGroup,
 				));
 			} else {
 				$this->render('listNode', array(
-					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(array('pagination' => false)),
+					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(['pagination' => [
+						'pageSize' => $this->module->pageSize,
+						'currentPage' => $page,
+					]]),
 					'breadcrumb' => $this->buildBreadcrumb($this->currentGroup->groupId),
 					'mainMenu' => $this->buildMainMenu(1, false),
 					'group'=>$this->currentGroup,
@@ -429,7 +435,7 @@ class GroupController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function actionListContent() {
+	public function actionListContent($page=0) {
 		try {
 			\Yii::trace(__METHOD__.'()', 'sweelix.yii1.admin.cloud.controllers');
 			$contentCriteriaBuilder = new CriteriaBuilder('content');
@@ -438,14 +444,20 @@ class GroupController extends Controller {
 			if (\Yii::app()->request->isAjaxRequest === true) {
 				$this->renderPartial('_listContent', array(
 					'group' => $this->currentGroup,
-					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(array('pagination' => false)),
+					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(['pagination' => [
+						'pageSize' => $this->module->pageSize,
+						'currentPage' => $page,
+					]]),
 				));
 			} else {
 				$this->render('listContent', array(
 					'breadcrumb' => $this->buildBreadcrumb($this->currentGroup->groupId),
 					'mainMenu' => $this->buildMainMenu(0, false),
 					'group'=>$this->currentGroup,
-					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(array('pagination' => false)),
+					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(['pagination' => [
+						'pageSize' => $this->module->pageSize,
+						'currentPage' => $page,
+					]]),
 				));
 			}
 		} catch(\Exception $e) {
@@ -509,7 +521,7 @@ class GroupController extends Controller {
 	 * @return void
 	 * @since  XXX
 	 */
-	public function actionChangeContentStatus() {
+	public function actionChangeContentStatus($page=0) {
 		try {
 			\Yii::trace(__METHOD__.'()', 'sweelix.yii1.admin.cloud.controllers');
 			$content = Content::model()->findByPk(\Yii::app()->getRequest()->getParam('contentId', 0));
@@ -519,7 +531,7 @@ class GroupController extends Controller {
 				$content->save();
 			}
 
-			$this->actionListContent();
+			$this->actionListContent($page);
 		} catch(\Exception $e) {
 			\Yii::log('Error in '.__METHOD__.'():'.$e->getMessage(), \CLogger::LEVEL_ERROR, 'sweelix.yii1.admin.cloud.controllers');
 			throw $e;
@@ -531,7 +543,7 @@ class GroupController extends Controller {
 	 * @return void
 	 * @since  XXX
 	 */
-	public function actionChangeNodeStatus() {
+	public function actionChangeNodeStatus($page=0) {
 		try {
 			\Yii::trace(__METHOD__.'()', 'sweelix.yii1.admin.cloud.controllers');
 			$node = Node::model()->findByPk(\Yii::app()->getRequest()->getParam('nodeId', 0));
@@ -540,7 +552,7 @@ class GroupController extends Controller {
 				$node->nodeStatus = $mode;
 				$node->save();
 			}
-			$this->actionListNode();
+			$this->actionListNode($page);
 		} catch(\Exception $e) {
 			\Yii::log('Error in '.__METHOD__.'():'.$e->getMessage(), \CLogger::LEVEL_ERROR, 'sweelix.yii1.admin.cloud.controllers');
 			throw $e;
