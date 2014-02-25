@@ -40,12 +40,13 @@ class Module extends BaseModule {
 	/**
 	 * @var string default controller name
 	 */
-	public $defaultController = 'node';
+	public $defaultController = 'group';
 
 	/**
 	 * @var integer page size
 	 */
 	public $pageSize = 20;
+
 	/**
 	 * Init the module with specific information.
 	 * @see CModule::init()
