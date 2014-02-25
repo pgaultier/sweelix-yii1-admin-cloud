@@ -1,0 +1,4 @@
+.module-cloud {
+	background-image:url(../img/tags@2x.png);
+	background-image:url(../img/tags.png)\9;// css hack
+}
