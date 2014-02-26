@@ -26,7 +26,8 @@
 		'template' => "\n<thead>\n{header}\n{summary}\n</thead>\n<tbody>\n{items}\n</tbody>\n<tfoot>\n{footer}\n</tfoot>\n",
 		'viewData' => array(
 				'groupId' => $group->groupId,
-				'title' => '',
+				'route' => 'group/listContent',
+				'title' => 'Page {pageNum} / {pageCount}',
 		),
 	));
 ?>

@@ -404,7 +404,7 @@ class TagController extends Controller {
 	 * @return void
 	 * @since  1.2.0
 	 */
-	public function actionListNode($withoutButtons=false) {
+	public function actionListNode($withoutButtons=false, $page=0) {
 		try {
 			\Yii::trace(__METHOD__.'()', 'sweelix.yii1.admin.cloud.controllers');
 			if(isset($_POST[Html::modelName('sweelix\yii1\admin\core\models\Node')]) === true) {
@@ -440,7 +440,10 @@ class TagController extends Controller {
 			if(\Yii::app()->request->isAjaxRequest === true) {
 				$this->renderPartial('_listNode', array(
 					'tag'=>$this->currentTag,
-					'nodesDataProvider' => $nodeCriteriaBuilder->getActiveDataProvider(array('pagination' => false)),
+					'nodesDataProvider' => $nodeCriteriaBuilder->getActiveDataProvider(['pagination' => [
+						'pageSize' => $this->module->pageSize,
+						'currentPage' => $page,
+					]]),
 					'withoutButtons' => $withoutButtons
 				));
 			} else {
@@ -448,7 +451,10 @@ class TagController extends Controller {
 					'mainMenu' => $this->buildMainMenu(1, false),
 					'breadcrumb' => $this->buildBreadcrumb($this->currentTag->tagId),
 					'tag'=>$this->currentTag,
-					'nodesDataProvider' => $nodeCriteriaBuilder->getActiveDataProvider(array('pagination' => false)),
+					'nodesDataProvider' => $nodeCriteriaBuilder->getActiveDataProvider(['pagination' => [
+						'pageSize' => $this->module->pageSize,
+						'currentPage' => $page,
+					]]),
 				));
 			}
 		} catch(\Exception $e) {
@@ -463,7 +469,7 @@ class TagController extends Controller {
 	 * @return void
 	 * @since  1.2.0
 	 */
-	public function actionListContent($withoutButtons=false) {
+	public function actionListContent($withoutButtons=false, $page=0) {
 		try {
 			\Yii::trace(__METHOD__.'()', 'sweelix.yii1.admin.cloud.controllers');
 			if(isset($_POST[Html::modelName('sweelix\yii1\admin\core\models\Content')]) === true) {
@@ -500,7 +506,10 @@ class TagController extends Controller {
 			if(\Yii::app()->request->isAjaxRequest === true) {
 				$this->renderPartial('_listContent', array(
 					'tag' => $this->currentTag,
-					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(array('pagination' => false)),
+					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(['pagination' => [
+						'pageSize' => $this->module->pageSize,
+						'currentPage' => $page,
+					]]),
 					'withoutButtons' => $withoutButtons,
 				));
 			} else {
@@ -508,7 +517,10 @@ class TagController extends Controller {
 					'mainMenu' => $this->buildMainMenu(0, false),
 					'breadcrumb' => $this->buildBreadcrumb($this->currentTag->tagId),
 					'tag'=>$this->currentTag,
-					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(array('pagination' => false)),
+					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(['pagination' => [
+						'pageSize' => $this->module->pageSize,
+						'currentPage' => $page,
+					]]),
 				));
 			}
 		} catch(\Exception $e) {
@@ -525,7 +537,7 @@ class TagController extends Controller {
  * @return 	void
  * @since  	XXX
  */
-	public function actionUpdateContentTag($tagId, $contentId) {
+	public function actionUpdateContentTag($tagId, $contentId, $page=0) {
 		try {
 			\Yii::trace(__METHOD__.'()', 'sweelix.yii1.admin.cloud.controllers');
 			$checked = \CPropertyValue::ensureBoolean(\Yii::app()->getRequest()->getParam('checked', false));
@@ -546,7 +558,10 @@ class TagController extends Controller {
 
 			$this->renderPartial('_listContent', array(
 					'tag' => $this->currentTag,
-					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(array('pagination' => false)),
+					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(['pagination' => [
+						'pageSize' => $this->module->pageSize,
+						'currentPage' => $page,
+					]]),
 					'withoutButtons' => true,
 			));
 		} catch(\Exception $e) {
@@ -564,7 +579,7 @@ class TagController extends Controller {
 	 * @return 	void
 	 * @since  	XXX
 	 */
-	public function actionUpdateNodeTag($tagId, $nodeId) {
+	public function actionUpdateNodeTag($tagId, $nodeId, $page=0) {
 		try {
 			\Yii::trace(__METHOD__.'()', 'sweelix.yii1.admin.cloud.controllers');
 			$checked = \CPropertyValue::ensureBoolean(\Yii::app()->getRequest()->getParam('checked', false));
@@ -583,7 +598,10 @@ class TagController extends Controller {
 			$nodeCriteriaBuilder->orderBy('nodeLeftId', 'asc');
 			$this->renderPartial('_listNode', array(
 					'tag' => $this->currentTag,
-					'nodesDataProvider' => $nodeCriteriaBuilder->getActiveDataProvider(array('pagination' => false)),
+					'nodesDataProvider' => $nodeCriteriaBuilder->getActiveDataProvider(['pagination' => [
+						'pageSize' => $this->module->pageSize,
+						'currentPage' => $page,
+					]]),
 					'withoutButtons' => true,
 			));
 		} catch(\Exception $e) {
@@ -648,7 +666,7 @@ class TagController extends Controller {
 	 * @return void
 	 * @since  XXX
 	 */
-	public function actionChangeContentStatus() {
+	public function actionChangeContentStatus($page=0) {
 		try {
 			\Yii::trace(__METHOD__.'()', 'sweelix.yii1.admin.cloud.controllers');
 			$content = Content::model()->findByPk(\Yii::app()->getRequest()->getParam('contentId', 0));
@@ -658,7 +676,7 @@ class TagController extends Controller {
 				$content->save();
 			}
 
-			$this->actionListContent(true);
+			$this->actionListContent(true, $page);
 		} catch(\Exception $e) {
 			\Yii::log('Error in '.__METHOD__.'():'.$e->getMessage(), \CLogger::LEVEL_ERROR, 'sweelix.yii1.admin.cloud.controllers');
 			throw $e;
@@ -670,7 +688,7 @@ class TagController extends Controller {
 	 * @return void
 	 * @since  XXX
 	 */
-	public function actionChangeNodeStatus() {
+	public function actionChangeNodeStatus($page=0) {
 		try {
 			\Yii::trace(__METHOD__.'()', 'sweelix.yii1.admin.cloud.controllers');
 			$node = Node::model()->findByPk(\Yii::app()->getRequest()->getParam('nodeId', 0));
@@ -679,7 +697,7 @@ class TagController extends Controller {
 				$node->nodeStatus = $mode;
 				$node->save();
 			}
-			$this->actionListNode(true);
+			$this->actionListNode(true, $page);
 		} catch(\Exception $e) {
 			\Yii::log('Error in '.__METHOD__.'():'.$e->getMessage(), \CLogger::LEVEL_ERROR, 'sweelix.yii1.admin.cloud.controllers');
 			throw $e;
