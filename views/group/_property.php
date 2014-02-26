@@ -22,7 +22,7 @@ use sweelix\yii1\ext\entities\Group;
 			<?php echo Html::activeDropDownList($group, 'templateId', Html::listData($templates, 'templateId', 'templateTitle'), array('class'=>'classic'))?><br/>
 
 			<?php echo Html::resetButton(Yii::t('cloud', 'Reset'), array('class' => 'button danger'))?>
-			<?php echo Html::submitButton(Yii::t('cloud', 'Validate'), array('class' => 'success'))?>
+			<?php echo Html::submitButton(Yii::t('cloud', 'Ok'), array('class' => 'success'))?>
 		</fieldset>
 <?php
 	if((isset($notice) === true) && ($notice === true)) {

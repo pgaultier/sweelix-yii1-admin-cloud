@@ -24,7 +24,7 @@ $dataForm = new ElasticForm($group);
 			<?php echo Html::activeTextField($group, 'groupUrl', array('class'=>'classic'))?><br/>
 			<?php echo $dataForm->render(); ?><br/>
 			<?php echo Html::resetButton(Yii::t('cloud', 'Reset'), array('class' => 'button danger'))?>
-			<?php echo Html::submitButton(Yii::t('cloud', 'Validate'), array('class' => 'success'))?>
+			<?php echo Html::submitButton(Yii::t('cloud', 'Ok'), array('class' => 'success'))?>
 		</fieldset>
 <?php
 	if((isset($notice) === true) && ($notice === true)) {

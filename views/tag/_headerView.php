@@ -16,7 +16,7 @@
 ?>
 <tr>
 	<th class="active">
-		<?php echo Yii::t('cloud', 'Actif') ?>
+		<?php echo Yii::t('cloud', 'Active') ?>
 	</th>
 
 	<th class="main-id">
