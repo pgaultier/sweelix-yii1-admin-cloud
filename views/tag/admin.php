@@ -53,7 +53,7 @@ use sweelix\yii1\web\helpers\Html;
 					array(
 						'{tag}'=>$sourceTag->tagTitle)
 					),
-					Sweeml::activeId($tag, 'selected'));
+					Html::activeId($tag, 'selected'));
 			?><br/>
 			<?php echo Html::activeHiddenField($tag, 'targetTagId'); ?>
 			<?php echo Html::submitButton(Yii::t('cloud', 'Delete'), array('class' => 'medium danger')); ?><br />

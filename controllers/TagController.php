@@ -149,7 +149,7 @@ class TagController extends Controller {
 
 	/**
 	 * Adding asynchronous upload / delete actions
-	 * @see Sweeml::activeAsyncFileUpload
+	 * @see Html::activeAsyncFileUpload
 	 *
 	 * @return array
 	 * @since  1.2.0
