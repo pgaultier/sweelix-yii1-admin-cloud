@@ -7,7 +7,7 @@
  * @author    Philippe Gaultier <pgaultier@sweelix.net>
  * @copyright 2010-2014 Sweelix
  * @license   http://www.sweelix.net/license license
- * @version   2.0.1
+ * @version   3.0.0
  * @link      http://www.sweelix.net
  * @category  controllers
  * @package   sweelix.yii1.admin.cloud.controllers
@@ -32,7 +32,7 @@ use sweelix\yii1\web\helpers\Html;
  * @author    Philippe Gaultier <pgaultier@sweelix.net>
  * @copyright 2010-2014 Sweelix
  * @license   http://www.sweelix.net/license license
- * @version   2.0.1
+ * @version   3.0.0
  * @link      http://www.sweelix.net
  * @category  controllers
  * @package   sweelix.yii1.admin.cloud.controllers
@@ -54,7 +54,7 @@ class TagController extends Controller {
 	 * @param integer $tagId target Tag if the breadcrumb
 	 *
 	 * @return array
-	 * @since  XXX
+	 * @since  3.0.0
 	*/
 	public function buildBreadcrumb($tagId) {
 		if(isset($this->_breadCrumb[$tagId]) === false) {
@@ -82,7 +82,7 @@ class TagController extends Controller {
 	 * @param mixed $secondaryOption index of selected option. false if secondary options should be hidden
 	 *
 	 * @return array
-	 * @since  XXX
+	 * @since  3.0.0
 	 */
 	public function buildMainMenu($mainOption=null, $secondaryOption=null) {
 		$mainMenu = array(
@@ -535,7 +535,7 @@ class TagController extends Controller {
  * @param 	integer $tagId tag's id
  * @param 	integer $contentId content's id
  * @return 	void
- * @since  	XXX
+ * @since  	3.0.0
  */
 	public function actionUpdateContentTag($tagId, $contentId, $page=0) {
 		try {
@@ -577,7 +577,7 @@ class TagController extends Controller {
 	 * @param 	integer $tagId tag's id
 	 * @param 	integer $nodeId node's id
 	 * @return 	void
-	 * @since  	XXX
+	 * @since  	3.0.0
 	 */
 	public function actionUpdateNodeTag($tagId, $nodeId, $page=0) {
 		try {
@@ -664,7 +664,7 @@ class TagController extends Controller {
 	 * Change status of current selected content and go back to list
 	 *
 	 * @return void
-	 * @since  XXX
+	 * @since  3.0.0
 	 */
 	public function actionChangeContentStatus($page=0) {
 		try {
@@ -686,7 +686,7 @@ class TagController extends Controller {
 	 * Change status of current selected node and go back to list
 	 *
 	 * @return void
-	 * @since  XXX
+	 * @since  3.0.0
 	 */
 	public function actionChangeNodeStatus($page=0) {
 		try {
