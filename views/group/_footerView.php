@@ -21,10 +21,10 @@ $nexPage = min($currentPage + 1, $widget->dataProvider->pagination->pageCount - 
 ?>
 <tr>
 	<th colspan="6">
-		<?php if($currentPage > 0) echo Html::link('<', [$route, 'groupId' => $groupId, 'page' => $previousPage], ['class' => 'button small']);?>
+		<?php if($currentPage > 0) echo Html::link('<', array($route, 'groupId' => $groupId, 'page' => $previousPage), array('class' => 'button small'));?>
 		<?php if($widget->dataProvider->totalItemCount > 0):?>
-			<span class="in-button"><?php echo(Yii::t('cloud', $title, [$widget->dataProvider->totalItemCount, '{pageNum}' => ($currentPage + 1), '{pageCount}' => $widget->dataProvider->pagination->pageCount]));?></span>
+			<span class="in-button"><?php echo(Yii::t('cloud', $title, array($widget->dataProvider->totalItemCount, '{pageNum}' => ($currentPage + 1), '{pageCount}' => $widget->dataProvider->pagination->pageCount)));?></span>
 		<?php endif;?>
-		<?php if($currentPage < ($widget->dataProvider->pagination->pageCount-1)) echo Html::link('>', [$route, 'groupId' => $groupId, 'page' => $nexPage], ['class' => 'button small']);?>
+		<?php if($currentPage < ($widget->dataProvider->pagination->pageCount-1)) echo Html::link('>', array($route, 'groupId' => $groupId, 'page' => $nexPage), array('class' => 'button small'));?>
 	</th>
 </tr>

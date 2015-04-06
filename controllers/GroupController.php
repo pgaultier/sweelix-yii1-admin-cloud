@@ -407,18 +407,18 @@ class GroupController extends Controller {
 
 			if(\Yii::app()->request->isAjaxRequest === true) {
 				$this->renderPartial('_listNode', array(
-					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(['pagination' => [
+					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(array('pagination' => array(
 						'pageSize' => $this->module->pageSize,
 						'currentPage' => $page,
-					]]),
+                    ))),
 					'group'=>$this->currentGroup,
 				));
 			} else {
 				$this->render('listNode', array(
-					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(['pagination' => [
+					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(array('pagination' => array(
 						'pageSize' => $this->module->pageSize,
 						'currentPage' => $page,
-					]]),
+                    ))),
 					'breadcrumb' => $this->buildBreadcrumb($this->currentGroup->groupId),
 					'mainMenu' => $this->buildMainMenu(1, false),
 					'group'=>$this->currentGroup,
@@ -444,20 +444,20 @@ class GroupController extends Controller {
 			if (\Yii::app()->request->isAjaxRequest === true) {
 				$this->renderPartial('_listContent', array(
 					'group' => $this->currentGroup,
-					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(['pagination' => [
+					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(array('pagination' => array(
 						'pageSize' => $this->module->pageSize,
 						'currentPage' => $page,
-					]]),
+                    ))),
 				));
 			} else {
 				$this->render('listContent', array(
 					'breadcrumb' => $this->buildBreadcrumb($this->currentGroup->groupId),
 					'mainMenu' => $this->buildMainMenu(0, false),
 					'group'=>$this->currentGroup,
-					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(['pagination' => [
+					'contentsDataProvider' => $contentCriteriaBuilder->getActiveDataProvider(array('pagination' => array(
 						'pageSize' => $this->module->pageSize,
 						'currentPage' => $page,
-					]]),
+                    ))),
 				));
 			}
 		} catch(\Exception $e) {

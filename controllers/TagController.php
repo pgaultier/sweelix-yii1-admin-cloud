@@ -440,10 +440,10 @@ class TagController extends Controller {
 			if(\Yii::app()->request->isAjaxRequest === true) {
 				$this->renderPartial('_listNode', array(
 					'tag'=>$this->currentTag,
-					'nodesDataProvider' => $nodeCriteriaBuilder->getActiveDataProvider(['pagination' => [
+					'nodesDataProvider' => $nodeCriteriaBuilder->getActiveDataProvider(array('pagination' => array(
 						'pageSize' => $this->module->pageSize,
 						'currentPage' => $page,
-					]]),
+                    ))),
 					'withoutButtons' => $withoutButtons
 				));
 			} else {
@@ -451,10 +451,10 @@ class TagController extends Controller {
 					'mainMenu' => $this->buildMainMenu(1, false),
 					'breadcrumb' => $this->buildBreadcrumb($this->currentTag->tagId),
 					'tag'=>$this->currentTag,
-					'nodesDataProvider' => $nodeCriteriaBuilder->getActiveDataProvider(['pagination' => [
+					'nodesDataProvider' => $nodeCriteriaBuilder->getActiveDataProvider(array('pagination' => array(
 						'pageSize' => $this->module->pageSize,
 						'currentPage' => $page,
-					]]),
+                    ))),
 				));
 			}
 		} catch(\Exception $e) {
