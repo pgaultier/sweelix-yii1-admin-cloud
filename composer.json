@@ -1,6 +1,6 @@
 {
 	"name" : "sweelix/yii1-admin-cloud",
-	"description" : "PHP 5.4+ Sweelix CMS cloud (tag/groups) management",
+	"description" : "PHP 5.3+ Sweelix CMS cloud (tag/groups) management",
 	"type" : "library",
 	"keywords" : [ "sweelix", "yii", "cms", "back office", "cloud", "tag", "group" ],
 	"license" : "BSD-3-Clause",
@@ -14,7 +14,7 @@
 	},
 	"autoload" : {
 		"psr-4" : {
-			"sweelix\\yii1\\admin\\cloud\\" : ""
+			"sweelix\\yii1\\admin\\cloud\\" : "src"
 		}
 	}
 }
