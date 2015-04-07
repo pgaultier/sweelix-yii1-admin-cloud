@@ -14,7 +14,9 @@
  */
 
 namespace sweelix\yii1\admin\cloud;
+
 use sweelix\yii1\admin\core\components\BaseModule;
+use Yii;
 
 /**
  * Class Module
@@ -31,33 +33,35 @@ use sweelix\yii1\admin\core\components\BaseModule;
  * @package   sweelix.yii1.admin.cloud
  * @since     1.0.0
  */
-class Module extends BaseModule {
-	/**
-	 * @var string controllers namespace
-	 */
-	public $controllerNamespace = 'sweelix\yii1\admin\cloud\controllers';
+class Module extends BaseModule
+{
+    /**
+     * @var string controllers namespace
+     */
+    public $controllerNamespace = 'sweelix\yii1\admin\cloud\controllers';
 
-	/**
-	 * @var string default controller name
-	 */
-	public $defaultController = 'group';
+    /**
+     * @var string default controller name
+     */
+    public $defaultController = 'group';
 
-	/**
-	 * @var integer page size
-	 */
-	public $pageSize = 20;
+    /**
+     * @var integer page size
+     */
+    public $pageSize = 20;
 
-	/**
-	 * Init the module with specific information.
-	 * @see CModule::init()
-	 *
-	 * @return void
-	 * @since  1.2.0
-	 */
-	protected function init() {
-		$this->basePath = __DIR__;
-		\Yii::setPathOfAlias($this->getShortId(), __DIR__);
-		\Yii::app()->getMessages()->extensionPaths[$this->getShortId()] = $this->getShortId().'.messages';
-		parent::init();
-	}
+    /**
+     * Init the module with specific information.
+     * @see CModule::init()
+     *
+     * @return void
+     * @since  1.2.0
+     */
+    protected function init()
+    {
+        $this->basePath = __DIR__;
+        Yii::setPathOfAlias($this->getShortId(), __DIR__);
+        Yii::app()->getMessages()->extensionPaths[$this->getShortId()] = $this->getShortId() . '.messages';
+        parent::init();
+    }
 }
